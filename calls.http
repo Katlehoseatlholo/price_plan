@@ -1,0 +1,42 @@
+###
+POST https://price-plan-3cje.onrender.com/api/phonebill/update
+content-type: application/json
+
+{
+"plan_name":"UJ",
+"sms_price":"6.19",
+"call_price":"3.19",
+"id":3
+}
+
+###
+POST https://price-plan-3cje.onrender.com/api/phonebill
+content-type: application/json
+
+{
+    "plan_name": "sms 10",
+    "action":"sms,call,sms"
+}
+
+###
+
+POST https://price-plan-3cje.onrender.com/api/price_plan/delete
+content-type:application/json
+
+{
+    "id":2
+}
+
+###
+
+POST https://price-plan-3cje.onrender.com/api/phonebill/create
+content-type:application/json
+
+{
+  "plan_name":"Cell_C",
+  "sms_price":"1.53",
+  "call_price":"2.93"
+}
+###
+GET https://price-plan-3cje.onrender.com/api/phonebill
+

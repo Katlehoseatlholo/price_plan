@@ -1,0 +1,38 @@
+import * as sqlite from 'sqlite';
+import sqlite3 from 'sqlite3';
+
+
+// Database setup
+
+const  db = await sqlite.open({
+  filename:  './data_plan.db',
+  driver:  sqlite3.Database
+});
+
+
+await db.migrate();
+// Functions for interacting with the database
+export async function create(plan_name,sms_price,call_price){
+  const sql=`insert into price_plan (plan_name,sms_price,call_price) values (?,?,?)`;
+  return await db.run(sql,[plan_name,sms_price,call_price]);
+}
+export async function deleteById(id){
+    const sql=`delete from price_plan where id=?`;
+    return await db.run(sql,id);
+}
+
+export async function getPrice_plan(){
+    const getPrice=await db.all(`select * from price_plan order by id desc limit 8`);
+    return getPrice;
+}
+
+
+export async function getPricePlan_Name(Plan_name){
+    const sql=`select * from price_plan where plan_name=?`;
+    return db.all(sql,Plan_name);
+}
+
+export async function UpdatePriceById(plan_name,sms_price,call_price,id){
+    const sql=`update price_plan set plan_name=?,sms_price=?,call_price=? where id=?`;
+    return await db.run(sql,[plan_name,sms_price,call_price,id]);
+}
